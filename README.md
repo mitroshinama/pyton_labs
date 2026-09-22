@@ -1,4 +1,5 @@
 # Лабораторная работа №1
 
-##Задание 1
-![рис.1](pyton_labs\images\lab01\ex1.png)
+**Задание 1**
+*файл*: [01_greeting.py](01_greeting.py)
+![Демонстрация работы кода](images\lab01\ex1.png)
