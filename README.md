@@ -122,3 +122,12 @@ _Работа кода_
 ![Демонстрация работы кода](/main/../images/lab02/ex6.png)
 
 ---
+**Задание 3**  
+*Файл:* [tuples.py](tuples.py)  
+*Ввод:* format_record(rec: tuple[str, str, float]) -> str     
+*Вывод:* Строка вида: Иванов И.И., гр. BIVT-25, GPA 4.60 
+
+_Работа кода_   
+![Демонстрация работы кода](/main/../images/lab02/ex7.png)
+
+---

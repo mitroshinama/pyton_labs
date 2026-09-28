@@ -6,7 +6,7 @@ def transpose(mat):
     for r in mat:
         if len(r) != w:
             raise ValueError("Рваная матрица")
-    res = []
+    res=[]
     for j in range(w):
         new_r=[]
         for i in range(len(mat)):
@@ -45,6 +45,6 @@ def col_sums(mat):
     return res
 
 s = eval(input())     
-#print(transpose(s))
-#print(row_sums(s))
+print(transpose(s))
+print(row_sums(s))
 print(col_sums(s))
