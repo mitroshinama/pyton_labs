@@ -1,6 +1,6 @@
 def min_max(nums):
     if not nums:
-        return ValueError("ValueError")
+        raise ValueError("ValueError")
     mn=mx=nums[0]
     for x in nums:
         if x<mn:
@@ -21,10 +21,18 @@ def unique_sorted(a):
                 b[j],b[j+1]=b[j+1],b[j]
     return b
 
-
+def flatten(mat):
+    res = []
+    for r in mat:
+        if not isinstance(r, (list, tuple)):
+            raise TypeError
+        for x in r:
+            res.append(x)
+    return res
 
 s = eval(input())     
-#print(min_max(s))
+print(min_max(s))
 print(unique_sorted(s))
+print(flatten(s))
 
 
