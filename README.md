@@ -92,3 +92,33 @@ _Работа кода_
 ![Демонстрация работы кода](/main/../images/lab02/ex3.png)
 
 ---
+
+**Задание 2.1**  
+*Файл:* [matrix.py](matrix.py)  
+*Ввод:* transpose(mat: list[list[float | int]]) -> list[list]     
+*Вывод:* Матрица, где строки и столбцы поменяли местами
+
+_Работа кода_   
+![Демонстрация работы кода](/main/../images/lab02/ex4.png)
+
+---
+
+**Задание 2.2**  
+*Файл:* [matrix.py](matrix.py)  
+*Ввод:* row_sums(mat: list[list[float | int]]) -> list[float]     
+*Вывод:* Сумма по каждой строке.  
+
+_Работа кода_   
+![Демонстрация работы кода](/main/../images/lab02/ex5.png)
+
+---
+
+**Задание 2.3**  
+*Файл:* [matrix.py](matrix.py)  
+*Ввод:* col_sums(mat: list[list[float | int]]) -> list[float]    
+*Вывод:* Сумма по каждому столбцу  
+
+_Работа кода_   
+![Демонстрация работы кода](/main/../images/lab02/ex6.png)
+
+---
