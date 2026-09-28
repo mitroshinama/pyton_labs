@@ -8,5 +8,23 @@ def min_max(nums):
         if x>mx:
             mx=x
     return mn, mx
+
+def unique_sorted(a):
+    b = []
+    for x in a:
+        if x not in b:
+            b.append(x)
+    n = len(b)
+    for i in range(n):
+        for j in range(n-1):
+            if b[j]>b[j+1]:
+                b[j],b[j+1]=b[j+1],b[j]
+    return b
+
+
+
 s = eval(input())     
-print(min_max(s))
+#print(min_max(s))
+print(unique_sorted(s))
+
+
