@@ -44,7 +44,33 @@ def col_sums(mat):
         res.append(s)
     return res
 
-s = eval(input())     
-print(transpose(s))
-print(row_sums(s))
-print(col_sums(s))
+print(f'''
+transpose
+
+[[1, 2, 3]] -> {transpose([[1, 2, 3]])}
+[[1], [2], [3]] -> {transpose([[1], [2], [3]])}
+[[1, 2], [3, 4]] -> {transpose([[1, 2], [3, 4]])}
+[] -> {transpose([])}
+''')
+
+#print(f'[[1, 2], [3]] -> {transpose([[1, 2], [3]])}')
+
+print(f'''
+row_sums
+
+[[1, 2, 3], [4, 5, 6]] -> {row_sums([[1, 2, 3], [4, 5, 6]])}
+[[-1, 1], [10, -10]] -> {row_sums([[-1, 1], [10, -10]])}
+[[0, 0], [0, 0]] -> {row_sums([[0, 0], [0, 0]])}
+''')
+
+#print(f'[[1, 2], [3]] -> {row_sums([[1, 2], [3]])}')
+
+print(f'''
+col_sums
+
+[[1, 2, 3], [4, 5, 6]] → {col_sums([[1, 2, 3], [4, 5, 6]])}
+[[-1, 1], [10, -10]] → {col_sums([[-1, 1], [10, -10]])}
+[[0, 0], [0, 0]] → {col_sums([[0, 0], [0, 0]])}
+''')
+
+print(f'[[1, 2], [3]] -> {col_sums([[1, 2], [3]])}')
