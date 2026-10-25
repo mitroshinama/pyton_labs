@@ -1,33 +1,32 @@
-def format_record(rec: tuple[str, str, float]) -> str:              
-    if len(rec) != 3:
-        raise ValueError('в кортеже должно быть 3 элемента')
-    if len(rec[0].strip().split()) != 3 and len(rec[0].strip().split()) != 2:
-        raise ValueError('не полное ФИО')
-    if not len(rec[1].strip()):
-        raise ValueError('группа не может быть пустой')
+def format_record(q):
+    if not isinstance(q, tuple) or len(q) != 3:
+        return "TypeError (3 кортеже должно быть 3 элемента )"
+    f, g, p = q
+    if not isinstance(f, str) or not isinstance(g, str):
+        return "TypeError (ФИО и группа должны быть строками)"
+    if not isinstance(p, (int, float)):
+        return "TypeError (GPA должен быть чеслом)"
 
-    if not isinstance(rec, tuple):
-        raise TypeError('должен быть кортеж')
-    if not isinstance(rec[0], str):
-        raise TypeError('имя должно быть строкой')
-    if not isinstance(rec[1], str):
-        raise TypeError('группа должна быть строкой')
-    if not isinstance(rec[2], (float, int)):
-        raise TypeError('оценка должна быть числом')
-    ff = 0
-    name = []
-    for w in rec[0].strip('" ').split():
-        w = w.strip()
-        if len(w) and ff:
-            name.append(w[0].capitalize() + '.')
-            ff = 1
+    fio = " ".join(f.split()).split()
+    gro = g.strip()
 
-        if len(w) and not (ff):
-            name.append(w[0].capitalize() + w[1:] + ' ')
-            ff = 1
+    if not fio:
+        return "ValueError (ФИО не пустое)"
+    if not gro:
+        return "ValueError (группа не пустая)"
+    if not (0.0 <= p <= 5.0):
+        return "ValueError (GPA должен быть от 0.0 до 5.0)"
 
-    return f"{''.join(name)}, гр. {rec[1]}, GPA {rec[2]:.2f}"
+    
+    s = fio[0].capitalize()
+    i = ""
+    for n in fio[1:]:
+        if n:
+            i += n[0].upper() + "."
 
+    ps = "{:.2f}".format(p)
+    res = s + " " + i + ", " + gro + ", GPA " + ps
+    return res
 
 
 print(f'''
@@ -37,4 +36,6 @@ print(f'''
 ("  сидорова  анна   сергеевна ", "ABB-01", 3.999) -> {format_record(("  сидорова  анна   сергеевна ", "ABB-01", 3.999))}
 ''')
 
-print(f'([Иванов Иван Иванович], "IKBO-12", 4.6) -> {format_record(([Иванов, Иван, Иванович], "IKBO-12", 4.6))}')
+print('("Сидоров Иван Иванович", "BIVT-26", 8.1) ->', format_record(("Сидоров Иван Иванович", "BIVT-26", 8.1)))
+print('("Ивахненко Анастасия Ивановна", "  ", 1.7) ->', format_record(("Ивахненко Анастасия Ивановна", "  ", 1.7)))
+print('("Кузнецов Артем Иванович", "BBI-25", "12.5") ->', format_record(("Кузнецов Артем Иванович", "BBI-25", "12.5")))
