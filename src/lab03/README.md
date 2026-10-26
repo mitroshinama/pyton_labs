@@ -32,7 +32,7 @@
 
 ![Результат top_n](/images/lab03/v4.png)
 
-**Задание B — src/text_stats.py**
+**Задание B — src/text_stats.py**    
 код читает весь текст из stdin до EOF.   
 Результат работы:   
 ![Результат В](/images/lab03/ex2.png)
