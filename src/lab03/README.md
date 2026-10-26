@@ -1,4 +1,4 @@
-# Лабораторная работа №3
+## Лабораторная работа №3
 
 **Задание A — src/lib/text.py**  
 *normalize:*
@@ -32,8 +32,8 @@
 
 ![Результат top_n](/images/lab03/v4.png)
 
-
-## Задание B — src/text_stats.py 
+**Задание B — src/text_stats.py**
 
 Результат работы:
+код читает весь текст из stdin до EOF.
 ![Результат В](/images/lab03/ex2.png)
