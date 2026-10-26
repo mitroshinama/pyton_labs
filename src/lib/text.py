@@ -1,22 +1,22 @@
 import re
-def normalize(t, *, casefold=True, yo2e=True):
+def normalize(t, *, casefold=True, yo2e=True):                                          # * параметры casefold и yo2e можно передавать только по имени
     if yo2e:
         t = t.replace('ё', 'е').replace('Ё', 'Е')
     t = t.casefold() if casefold else t.lower()
-    t = re.sub(r'\s+', ' ', t)
+    t = re.sub(r'\s+', ' ', t)                              #заменяет (1 или несколько пробелов на 1 пробел)
     return t.strip()
 
 
 def tokenize(t: str):
-    return re.findall(r"\w+(?:-\w+)*", t)
+    return re.findall(r"\w+(?:-\w+)*", t)                          #ищем все слова подходящие под регулярку
 
-def count_freq(tokens: list[str]):
+def count_freq(tokens):
     m = dict()
     for i in range(len(set(tokens))):
         m[sorted(list(set(tokens)))[i]] = tokens.count(sorted(list(set(tokens)))[i])
     return m
 
-def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:  #Функция принимает словарь со строками и числами, количество n (по умолчанию 5) и должна вернуть список пар: слово и его частота».
     return sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))[:n]
 
 
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     print('normalize')
     print(f'  "привет\\nмир\\t" → {repr(normalize("привет\nмир\t"))} (casefold + схлопнуть пробелы)')
     print(f'  "ёжик, Ёлка" (yo2e=True) → {repr(normalize("ёжик, Ёлка", yo2e=True))}')
-    print(f'  "Hello\\r\\nworld" → {repr(normalize("Hello\r\nworld"))}')
+    print(f'  "Hello\\r\\nworld" → {repr(normalize("Hello\r\nworld"))}')  #коде она нужна просто для того, чтобы при печати результата вокруг текста появились кавычки, и было сразу понятно: функция вернула именно строку, а не что-то другое.
     print(f'  "  двойные  пробелы  " → {repr(normalize("  двойные  пробелы  "))}')
 
     print('tokenize')
