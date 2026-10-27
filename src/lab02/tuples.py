@@ -1,6 +1,8 @@
 def format_record(q):
     if not isinstance(q, tuple) or len(q) != 3:
-        return "TypeError (3 кортеже должно быть 3 элемента )"
+        return "TypeError (в кортеже должно быть 3 элемента )"
+    if not isinstance(q, tuple):
+        raise TypeError("Должен быть кортеж")
     f, g, p = q
     if not isinstance(f, str) or not isinstance(g, str):
         return "TypeError (ФИО и группа должны быть строками)"
