@@ -9,15 +9,15 @@ from lab04.io_txt_csv import read_text, write_csv
 
 
 def sorted_word_counts(freq: dict[str, int]) -> list[tuple[str, int]]:
-    """Отсортировать (слово, частота): count ↓, затем слово ↑."""
+    """Отсортировать (слово, частота): count , затем слово ."""
     return sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--in", dest="inp", default="data/input.txt")
-    parser.add_argument("--out", dest="out", default="data/report.csv")
-    parser.add_argument("--encoding", default="utf-8")
+    parser.add_argument("--in", dest="inp", default="data/input.txt")  #--in	входной текстовый файл
+    parser.add_argument("--out", dest="out", default="data/report.csv") #--out	путь к CSV-отчёту
+    parser.add_argument("--encoding", default="utf-8") #--encoding	кодировка входного файла
     args = parser.parse_args()
 
     try:
@@ -37,6 +37,8 @@ def main() -> int:
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
+    '''parents=True — создает все недостающие папки по цепочке. 
+    exist_ok=True — Если эта папка уже существует, не выдает ошибку'''
     write_csv(sorted_word_counts(freq), out, header=("word", "count"))
 
     print(f"Всего слов: {sum(freq.values())}")
