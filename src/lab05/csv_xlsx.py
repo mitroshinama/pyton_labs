@@ -26,21 +26,22 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     if not rows[0]:
         raise ValueError("CSV-файл не содержит заголовка")
 
-    wb = Workbook()
-    ws = wb.active
+    wb = Workbook() #(Workbook = рабочая книга
+    ws = wb.active #ws = Worksheet = рабочий лист
     ws.title = "Sheet1"
 
     for row in rows:
         ws.append(row)
 
     # Автоширина колонок (минимум 8 символов)
-    for col_idx, column in enumerate(ws.columns, start=1):
+    for col_idx, column in enumerate(ws.columns, start=1):  '''enumerate    одновременно получать индексы 
+                                                        и значения элементов при переборе коллекции. '''
         max_length = 0
         for cell in column:
             if cell.value is not None:
                 max_length = max(max_length, len(str(cell.value)))
         adjusted_width = max(max_length, 8)  # как в ТЗ: не менее 8
-        ws.column_dimensions[get_column_letter(col_idx)].width = adjusted_width
+        ws.column_dimensions[get_column_letter(col_idx)].width = adjusted_width '''???????????????'''
 
     xlsx_file = Path(xlsx_path)
     _ensure_parent_dir(xlsx_file)

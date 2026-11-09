@@ -11,38 +11,37 @@ def _ensure_parent_dir(path: Path) -> None:
 
 def json_to_csv(json_path: str, csv_path: str) -> None:
     json_file = Path(json_path)
-    if not json_file.exists():
+    if not json_file.exists(): #есть ли файл по заданному пути 
         raise FileNotFoundError(f"Файл не найден: {json_path}")
-
     if json_file.suffix.lower() != ".json":
         raise ValueError(f"Ожидался файл .json, получен: {json_file.suffix}")
 
     with json_file.open(encoding="utf-8") as f:
         try:
-            data: Any = json.load(f)
-        except json.JSONDecodeError as exc:
+            data: Any = json.load(f)  '''any любой тип данных'''
+        except json.JSONDecodeError as exc: #Ошибка декодирования JSON
             raise ValueError("Некорректный JSON или пустой файл") from exc
 
     # Валидация структуры
     if not data:
         raise ValueError("Пустой JSON или неподдерживаемая структура")
-    if not isinstance(data, list):
+    if not isinstance(data, list): #проверяет, принадлежит ли объект к определённому классу 
         raise ValueError("JSON должен содержать список объектов")
     if not all(isinstance(item, dict) for item in data):
         raise ValueError("Все элементы JSON должны быть словарями")
 
     # Формируем порядок колонок по первому объекту
-    fieldnames = list(data[0].keys())
+    fieldnames = list(data[0].keys()) #список ключей
 
     csv_file = Path(csv_path)
     _ensure_parent_dir(csv_file)
 
-    with csv_file.open("w", newline="", encoding="utf-8") as f:
+    with csv_file.open("w", newline="", encoding="utf-8") as f: #если его не указать, на Windows между 
+                                                                #строками могут появиться пустые строки (двойной перенос)
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for row in data:
-            # Заполняем отсутствующие ключи пустыми строками
-            full_row = {key: row.get(key, "") for key in fieldnames}
+            full_row = {key: row.get(key, "") for key in fieldnames} # Заполняем отсутствующие ключи пустыми строками
             writer.writerow(full_row)
 
 
@@ -55,7 +54,9 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
         raise ValueError(f"Ожидался файл .csv, получен: {csv_file.suffix}")
 
     with csv_file.open(encoding="utf-8") as f:
-        reader = csv.DictReader(f)
+        reader = csv.DictReader(f)   # берет первую строку файла 
+                                    #и делает из нее заголовки (ключи). А каждую 
+                                    #следующую строку он превращает в словарь 
         if reader.fieldnames is None:
             raise ValueError("CSV-файл пуст или не содержит заголовка")
         rows = list(reader)
@@ -67,9 +68,10 @@ def csv_to_json(csv_path: str, json_path: str) -> None:
 
     with json_file.open("w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False, indent=2)
+        ''' строка берет данные (rows), открывает файл (f), и аккуратно, с 
+        сохранением русского языка и красивыми отступами, записывает их туда в формате JSON.'''
 
 if __name__ == "__main__":
-    # Демонстрационный запуск: python -m src.lab05.json_csv
     json_to_csv("data/samples/people.json", "data/out/from_json.csv")
     csv_to_json("data/samples/people.csv", "data/out/from_csv.json")
     print("JSON ↔ CSV конвертации выполнены.")
