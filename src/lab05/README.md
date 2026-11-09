@@ -49,7 +49,6 @@
 
 ## Скриншоты работы программы
 
-Вызовы: python -m src.lab05.json_csv, python -m src.lab05.csv_xlsx
 
 ### 1. Результат JSON → CSV   
 
