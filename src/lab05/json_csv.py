@@ -18,7 +18,7 @@ def json_to_csv(json_path: str, csv_path: str) -> None:
 
     with json_file.open(encoding="utf-8") as f:
         try:
-            data: Any = json.load(f)  '''any любой тип данных'''
+            data: Any = json.load(f)
         except json.JSONDecodeError as exc: #Ошибка декодирования JSON
             raise ValueError("Некорректный JSON или пустой файл") from exc
 
