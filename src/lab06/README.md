@@ -12,12 +12,13 @@
 
 ```powershell
 python -m src.lab06.cli_text stats --input data/samples/people.txt
+```
 
 Выводит топ-5 самых часто встречающихся слов в тексте:
 
 ```powershell
 python -m src.lab06.cli_text stats --input data/lab04/input.txt --top 5
-
+```
 
 Пример запуска кода (вывод топ 5):
 
